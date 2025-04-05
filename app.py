@@ -10,10 +10,14 @@ from PIL import Image
 import torch
 import sys
 import types
-# Fix pour éviter l'erreur "__path__._path" dans torch.classes sur Windows avec Streamlit
+
+# PATCH: fix torch.classes bug with Streamlit
 if isinstance(torch.classes, types.ModuleType) and not hasattr(torch.classes, '__path__'):
     torch.classes.__path__ = []
+
+# ✅ PAGE CONFIG — put this right here
 st.set_page_config(page_title="Analyseur de contenu", layout="centered")
+
 # 🌟 Titre personnalisé et stylé (remplace st.title)
 st.markdown("""
     <h1 style='text-align: center; color: #4A90E2;'>
