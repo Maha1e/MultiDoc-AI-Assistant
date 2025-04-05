@@ -1,4 +1,5 @@
 
+
 # Imports des modules
 from text_analysis import analyze_text
 from pdf_analysis import extract_text_from_pdf, chunk_text, compute_embeddings, create_faiss_index, answer_question
@@ -9,7 +10,7 @@ from PIL import Image
 import torch
 import sys
 import types
-
+st.set_page_config(page_title="Analyseur de contenu", layout="centered")
 # 🌟 Titre personnalisé et stylé (remplace st.title)
 st.markdown("""
     <h1 style='text-align: center; color: #4A90E2;'>
@@ -21,7 +22,7 @@ if isinstance(torch.classes, types.ModuleType) and not hasattr(torch.classes, '_
     torch.classes.__path__ = []
 
 
-st.set_page_config(page_title="Analyseur de contenu", layout="centered")
+
 #st.title("🧠 MultiDoc AI Assistant : Texte, PDF, Image")
 
 #option = st.sidebar.radio("Choisissez un type de contenu à analyser :", ["Texte", "PDF", "Image"])
