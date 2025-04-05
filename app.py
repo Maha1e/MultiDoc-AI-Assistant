@@ -14,7 +14,7 @@ st.set_page_config(page_title="Analyseur de contenu", layout="centered")
 # 🌟 Titre personnalisé et stylé (remplace st.title)
 st.markdown("""
     <h1 style='text-align: center; color: #4A90E2;'>
-        🧠 AI Résumeur Multimodal
+        🧠 MultiDoc AI Assistant : Texte, PDF, Image
     </h1>
 """, unsafe_allow_html=True)
 # Fix pour éviter l'erreur "__path__._path" dans torch.classes sur Windows avec Streamlit
