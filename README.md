@@ -25,13 +25,22 @@ Application Streamlit permettant d’analyser automatiquement des contenus textu
 
 ---
 
-## 💻 Interface utilisateur
 
 
+## 🌐 Accès en ligne
+### 💻 Interface utilisateur
 
 - Interface simple via `Streamlit`
 - Sidebar de sélection du type de contenu
 - Résultat affiché instantanément
+
+---
+
+Vous pouvez accéder à l'application directement via Streamlit Cloud, sans rien installer localement :
+
+➡️ **Lien vers l'application : [https://multidoc-ai-assistant-cytech-2025.streamlit.app](https://multidoc-ai-assistant-cytech-2025.streamlit.app)**
+
+L'application est publique, et toute personne peut l'utiliser pour analyser du texte, des fichiers PDF ou des images en quelques clics.
 
 ---
 
@@ -58,18 +67,11 @@ venv\Scripts\activate     # (Windows)
 pip install -r requirements.txt
 ```
 
----
-
-
-
 ## ▶️ Lancer l'application
 
 ```bash
 streamlit run app.py
 ```
-
----
-
 
 ## Modèles utilisés
 
@@ -102,5 +104,4 @@ streamlit run app.py
 - Projet dans le cadre du cours **LLM & Applications Open Source**
 
 ---
-
 
