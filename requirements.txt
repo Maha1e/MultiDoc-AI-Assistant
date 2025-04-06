@@ -2,7 +2,11 @@ streamlit
 faiss-cpu
 PyPDF2
 Pillow
-sentence-transformers
-torch
+
+
 tokenizers
-transformers
+
+
+transformers==4.37.2
+sentence-transformers==2.2.2
+torch==2.1.2
