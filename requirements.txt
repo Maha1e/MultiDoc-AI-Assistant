@@ -1,7 +1,7 @@
 streamlit
-transformers
-torch
-sentence-transformers
 faiss-cpu
 PyPDF2
 Pillow
+sentence-transformers==2.2.2
+transformers==4.30.2
+torch>=1.11
