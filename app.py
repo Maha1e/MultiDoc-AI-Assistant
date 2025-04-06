@@ -6,6 +6,7 @@ from pdf_analysis import extract_text_from_pdf, chunk_text, compute_embeddings, 
 from image_analysis import load_image, generate_caption, summarize_caption
 import streamlit as st
 import tempfile
+import requests
 from PIL import Image
 import torch
 import sys
@@ -26,7 +27,16 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 #st.title("🧠 MultiDoc AI Assistant : Texte, PDF, Image")
+def check_internet():
+    try:
+        requests.get("https://www.google.com", timeout=3)
+        st.success("✅ Connexion Internet active.")
+        return True
+    except requests.ConnectionError:
+        st.error("❌ Pas de connexion Internet détectée.")
+        return False
 
+check_internet()
 #option = st.sidebar.radio("Choisissez un type de contenu à analyser :", ["Texte", "PDF", "Image"])
 with st.sidebar:
     st.markdown("## 📂 Sélection du contenu")
