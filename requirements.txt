@@ -1,12 +1,9 @@
-streamlit
-faiss-cpu
-PyPDF2
-Pillow
-
-
-tokenizers
-
-
+streamlit==1.44.1
 transformers==4.37.2
 sentence-transformers==2.2.2
-torch==2.1.2
+huggingface-hub==0.19.4
+faiss-cpu==1.7.4
+PyPDF2==3.0.1
+
+numpy<2.0  # Ensures compatibility with PyTorch
+torch==2.1.0
