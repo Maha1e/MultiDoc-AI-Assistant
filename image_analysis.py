@@ -22,8 +22,9 @@ def generate_caption(image):
     Cette fonction permet d'utiliser le modèle BLIP pour générer une description de l'image.
     """
 
-    processor = BlipProcessor.from_pretrained("C:/Users/CYTech Student/.cache/huggingface/hub/models--Salesforce--blip-image-captioning-base/snapshots/<hash>")
-    model = BlipForConditionalGeneration.from_pretrained("C:/Users/CYTech Student/.cache/huggingface/hub/models--Salesforce--blip-image-captioning-base/snapshots/<hash>")
+    processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base", cache_dir="models/blip")
+    model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base", cache_dir="models/blip")
+
 
 
     inputs = processor(image, return_tensors="pt")
