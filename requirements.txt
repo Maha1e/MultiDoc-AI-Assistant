@@ -6,4 +6,5 @@ faiss-cpu==1.7.4
 PyPDF2==3.0.1
 numpy==1.26.4
 scikit-learn==1.4.1.post1
+
 torch==2.2.2
