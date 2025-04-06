@@ -1,6 +1,6 @@
 import PyPDF2
 import numpy as np
-from huggingface_hub import InferenceClient
+from transformers import pipeline
 from sentence_transformers import SentenceTransformer
 import faiss
 
@@ -49,28 +49,26 @@ def create_faiss_index(embeddings):
     index.add(embeddings)
     return index
 
-
-def answer_question(question, chunks, index, hf_token, model_id="deepset/roberta-base-squad2"):
+def answer_question(question, chunks, index, model_id="deepset/roberta-base-squad2"):
     """
-    Répond à la question en utilisant le modèle Q&A distant via Hugging Face API.
+    Répond à la question en utilisant le modèle Q&A via transformers.pipeline.
     """
     model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
     question_embedding = model.encode([question], convert_to_tensor=False)
     question_embedding = np.array(question_embedding).reshape(1, -1)
 
+    # Find the most relevant chunk using FAISS
     distances, closest_chunk_idx = index.search(question_embedding, k=1)
     closest_chunk = chunks[closest_chunk_idx[0][0]]
 
     print(f"\n🔍 Contexte sélectionné: {closest_chunk}\n")
 
-    client = InferenceClient(token=hf_token)
-    response = client.question_answering(
-        question=question,
-        context=closest_chunk,
-        model=model_id
-    )
+    # Use the transformers pipeline for Q&A
+    qa_pipeline = pipeline("question-answering", model=model_id)
 
-    answer = response.get("answer", "")
+    result = qa_pipeline(question=question, context=closest_chunk)
+    answer = result.get("answer", "")
+
     if not answer or len(answer.strip()) < 5:
         print("Réponse peu fiable, essayez de reformuler la question.")
         return "Réponse non trouvée. Essayez de reformuler votre question."
