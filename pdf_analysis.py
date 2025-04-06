@@ -39,7 +39,7 @@ def chunk_text(text_list, chunk_size=400):
     return chunks
 
 
-def compute_embeddings(chunks, model_name="paraphrase-MiniLM-L3-v2"):
+def compute_embeddings(chunks, model_name="all-MiniLM-L6-v2"):
     """
     Cette fonction permet de calculer les embeddings pour chaque chunk de texte.
 
