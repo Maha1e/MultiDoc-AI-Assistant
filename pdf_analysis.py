@@ -53,14 +53,12 @@ def compute_embeddings(chunks):
     Return:
     La liste des Embeddings (sous forme de numpy array).
     """
-    model_name = "sentence-transformers/all-MiniLM-L6-v2"
     try:
-        model = SentenceTransformer(model_name)
+        model = SentenceTransformer("./models/miniLM")
     except Exception as e:
-        print(f"⚠️ HuggingFace model load failed: {e}")
-        print("👉 Trying to load local backup model...")
-        model = SentenceTransformer("./models/miniLM")  
-
+        print(f"⚠️ Local model load failed: {e}")
+        print("👉 Trying to download from Hugging Face (requires internet)...")
+        model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
     embeddings = model.encode(chunks, convert_to_tensor=False)
     return np.array(embeddings)
 
