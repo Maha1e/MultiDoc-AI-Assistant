@@ -3,12 +3,9 @@ from transformers import BlipProcessor, BlipForConditionalGeneration, pipeline
 import streamlit as st
 
 # Forcer le téléchargement et le cache local
-try:
-    processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
-    model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
-except Exception as e:
-    st.error("❌ Le modèle BLIP n'a pas pu être chargé. Vérifiez votre connexion ou utilisez une version hors ligne.")
-    st.stop()
+
+
+
 def load_image(image_path):
     """
     Cette fonction permet de charger une image à partir du chemin fourni.
@@ -24,8 +21,10 @@ def generate_caption(image):
     """
     Cette fonction permet d'utiliser le modèle BLIP pour générer une description de l'image.
     """
-    processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
-    model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
+
+    processor = BlipProcessor.from_pretrained("C:/Users/CYTech Student/.cache/huggingface/hub/models--Salesforce--blip-image-captioning-base/snapshots/<hash>")
+    model = BlipForConditionalGeneration.from_pretrained("C:/Users/CYTech Student/.cache/huggingface/hub/models--Salesforce--blip-image-captioning-base/snapshots/<hash>")
+
 
     inputs = processor(image, return_tensors="pt")
     out = model.generate(**inputs)
