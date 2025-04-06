@@ -1,6 +1,6 @@
 from transformers import pipeline
 
-def analyze_text(text, model_name="facebook/bart-large-cnn"):
+def analyze_text(text, model_name="sshleifer/distilbart-cnn-12-6"):
     """
     Cette fonction résume un texte en utilisant un modèle de summarization Hugging Face.
 
