@@ -4,8 +4,6 @@ import faiss
 from transformers import pipeline
 import numpy as np
 
-model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
-model.save("./models/miniLM")
 
 def extract_text_from_pdf(pdf_path):
     """
@@ -60,7 +58,7 @@ def compute_embeddings(chunks):
     except Exception as e:
         print(f"⚠️ HuggingFace model load failed: {e}")
         print("👉 Trying to load local backup model...")
-        model = SentenceTransformer("./models/miniLM")  # You must have it downloaded locally
+        model = SentenceTransformer("./models/miniLM")  
 
     embeddings = model.encode(chunks, convert_to_tensor=False)
     return np.array(embeddings)
