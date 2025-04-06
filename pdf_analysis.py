@@ -38,7 +38,8 @@ def chunk_text(text_list, chunk_size=400):
             chunks.append(text[i:i+chunk_size])
     return chunks
 
-def compute_embeddings(chunks, model_name="all-MiniLM-L6-v2"):
+
+def compute_embeddings(chunks, model_name="paraphrase-MiniLM-L3-v2"):
     """
     Cette fonction permet de calculer les embeddings pour chaque chunk de texte.
 
@@ -49,7 +50,9 @@ def compute_embeddings(chunks, model_name="all-MiniLM-L6-v2"):
     Return:
     La liste des Embeddings (sous forme de numpy array).
     """
-    model = SentenceTransformer(model_name)
+    #model = SentenceTransformer(model_name)
+    model = SentenceTransformer(model_name, cache_folder="./models")
+
     embeddings = model.encode(chunks, convert_to_tensor=False)
     return np.array(embeddings)
 
