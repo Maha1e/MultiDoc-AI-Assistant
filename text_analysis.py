@@ -10,7 +10,7 @@ def analyze_text(text, model_name="sshleifer/distilbart-cnn-12-6"):
 
     """
     summarizer = pipeline("summarization", model=model_name)
-    summary = summarizer(text, max_length=150, min_length=50, do_sample=False)
+    summary = summarizer(text, max_length=130, min_length=30, do_sample=False)
     return summary[0]['summary_text']
 
 
