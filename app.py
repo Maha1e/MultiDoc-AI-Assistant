@@ -11,6 +11,8 @@ from PIL import Image
 import torch
 import sys
 import types
+import os
+os.system("pip install faiss-cpu==1.7.4")
 
 # PATCH: fix torch.classes bug with Streamlit
 if isinstance(torch.classes, types.ModuleType) and not hasattr(torch.classes, '__path__'):
