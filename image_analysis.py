@@ -29,7 +29,7 @@ def summarize_caption(caption):
     """
     Cette fonction permet de résumer ou extraire les points clés de la caption avec un modèle de NLP.
     """
-    summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+    summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
     summary = summarizer(caption, max_length=50, min_length=20, do_sample=False)[0]["summary_text"]
     print(f"Résumé: {summary}")
     return summary
