@@ -4,6 +4,9 @@ import faiss
 from transformers import pipeline
 import numpy as np
 
+model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+model.save("./models/miniLM")
+
 def extract_text_from_pdf(pdf_path):
     """
     Cette fonction permet d'extraire le texte d'un fichier PDF page par page.
@@ -39,7 +42,8 @@ def chunk_text(text_list, chunk_size=400):
     return chunks
 
 
-def compute_embeddings(chunks, model_name="all-MiniLM-L6-v2"):
+
+def compute_embeddings(chunks):
     """
     Cette fonction permet de calculer les embeddings pour chaque chunk de texte.
 
@@ -50,8 +54,13 @@ def compute_embeddings(chunks, model_name="all-MiniLM-L6-v2"):
     Return:
     La liste des Embeddings (sous forme de numpy array).
     """
-    model = SentenceTransformer(model_name)
-    #model = SentenceTransformer(model_name, cache_folder="./models")
+    model_name = "sentence-transformers/all-MiniLM-L6-v2"
+    try:
+        model = SentenceTransformer(model_name)
+    except Exception as e:
+        print(f"⚠️ HuggingFace model load failed: {e}")
+        print("👉 Trying to load local backup model...")
+        model = SentenceTransformer("./models/miniLM")  # You must have it downloaded locally
 
     embeddings = model.encode(chunks, convert_to_tensor=False)
     return np.array(embeddings)
