@@ -5,6 +5,7 @@ from transformers import pipeline
 import numpy as np
 
 
+
 def extract_text_from_pdf(pdf_path):
     """
     Cette fonction permet d'extraire le texte d'un fichier PDF page par page.
