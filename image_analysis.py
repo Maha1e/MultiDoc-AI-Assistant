@@ -1,6 +1,14 @@
 from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration, pipeline
+import streamlit as st
 
+# Forcer le téléchargement et le cache local
+try:
+    processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
+    model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
+except Exception as e:
+    st.error("❌ Le modèle BLIP n'a pas pu être chargé. Vérifiez votre connexion ou utilisez une version hors ligne.")
+    st.stop()
 def load_image(image_path):
     """
     Cette fonction permet de charger une image à partir du chemin fourni.
