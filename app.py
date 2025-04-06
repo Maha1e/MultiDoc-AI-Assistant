@@ -2,7 +2,7 @@
 
 # Imports des modules
 from text_analysis import analyze_text
-from pdf_analysis import extract_text_from_pdf, chunk_text, compute_embeddings, create_faiss_index, answer_question
+from pdf_analysis import extract_text_from_pdf, chunk_text, compute_embeddings, create_index_sklearn, answer_question
 from image_analysis import load_image, generate_caption, summarize_caption
 import streamlit as st
 import tempfile
@@ -72,7 +72,7 @@ elif option == "📄 PDF":
         pdf_text = extract_text_from_pdf(pdf_path)
         chunks = chunk_text(pdf_text)
         embeddings = compute_embeddings(chunks)
-        index = create_faiss_index(embeddings)
+        index = create_index_sklearn(embeddings)
         answer = answer_question(question, chunks, index)
         st.success("Réponse à votre question :")
         st.write(answer)
